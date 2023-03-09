@@ -3,9 +3,9 @@ import { galleryItems } from './gallery-items';
 // Change code below this line
 
 console.log(galleryItems);
-const galleryContainer = document.querySelector(".gallery");
+const galleryContainer = document.querySelector('.gallery');
 console.log(galleryContainer);
-galleryContainer.addEventListener("click", handleGaleryContainerClick);
+galleryContainer.addEventListener('click', handleGaleryContainerClick);
 
 function createGalleryCardsMarkup(item) {
   return item
@@ -24,28 +24,31 @@ function createGalleryCardsMarkup(item) {
     
     `;
     })
-    .join("");
+    .join('');
 }
 const cardsMarkup = createGalleryCardsMarkup(galleryItems);
-galleryContainer.insertAdjacentHTML("beforeend", cardsMarkup);
-galleryContainer.addEventListener("click", handleGaleryContainerClick);
+galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
+galleryContainer.addEventListener('click', handleGaleryContainerClick);
 function handleGaleryContainerClick(event) {
   event.preventDefault();
-  if (event.target.nodeName !== "IMG") {
+  if (event.target.nodeName !== 'IMG') {
     return;
   }
   console.log(event.target);
-  let href = event.target.closest("a").getAttribute("href");
+  let href = event.target.closest('a').getAttribute('href');
   return href;
 }
-let gallery = new SimpleLightbox(".gallery a", {
-  captionSelector: "img",
-  captionsData: "alt",
-  captionPosition: "bottom",
+import SimpleLightbox from "simplelightbox";
+import 'simplelightbox/dist/simple-lightbox.min.css';
+let gallery = new SimpleLightbox('.gallery a', {
+  captionSelector: 'img',
+  captionsData: 'alt',
+  captionPosition: 'bottom',
   captionDelay: 250,
   scrollZoom: false,
 });
-gallery.on("show.simplelightbox", function () {});
-gallery.on("error.simplelightbox", function (event) {
+
+gallery.on('show.simplelightbox', function () {});
+gallery.on('error.simplelightbox', function (event) {
   console.log(event);
 });
