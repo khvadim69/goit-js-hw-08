@@ -1,7 +1,7 @@
 const form = document.querySelector(".feedback-form");
-
+import throttle from 'lodash.throttle'
 form.addEventListener("input", handleInput);
-function handleInput(event) {
+throttle(function handleInput(event) {
   event.preventDefault();
   localStorage.setItem('feedback-form-state', JSON.stringify(email,message));
   const {
@@ -14,9 +14,10 @@ function handleInput(event) {
 
   console.log(`email: ${email.value}, message: ${message.value}`);
   event.currentTarget.reset();
-};
+},500);
 
   
+// output.textContent = event.currentTarget.value;
 
 
 
