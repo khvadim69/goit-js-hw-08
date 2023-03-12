@@ -10,4 +10,14 @@ const playerSaveTime = localStorage.getItem('videoplayer-current-time');
 // console.log(playerSaveTime);
 const playerTimeStop = JSON.parse(playerSaveTime);
 // console.log(playerTimeStop.seconds);
-player.setCurrentTime(playerTimeStop.seconds || 0);
+player.setCurrentTime(playerTimeStop.seconds).then(function(seconds) {
+}).catch(function(error) {
+  switch (error.name) {
+      case 'RangeError':
+                  break;
+
+      default:
+                  break;
+  }
+});
+// player.setCurrentTime(playerTimeStop.seconds || 0);
