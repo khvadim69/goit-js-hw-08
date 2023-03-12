@@ -1,2 +1,0 @@
-document.querySelector(".feedback-form").addEventListener("input",(function(e){e.preventDefault(),localStorage.setItem("feedback-form-state",JSON.stringify(a,r));var t=e.currentTarget.elements,a=t.email,r=t.message;""!==a.value&&""!==r.value||localStorage.getItem("feedback-form-state"),console.log("email: ".concat(a.value,", message: ").concat(r.value)),e.currentTarget.reset()}));
-//# sourceMappingURL=03-feedback.91fc6add.js.map
