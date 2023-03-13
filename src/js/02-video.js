@@ -1,19 +1,14 @@
-import Player from '@vimeo/player';
-import throttle from 'lodash.throttle';
-const iframe = document.querySelector('iframe');
-const player = new Player(iframe);
-player.on(
-  'timeupdate',
-  throttle(function (time) {
-    localStorage.setItem('videoplayer-current-time', JSON.stringify(time));
-  }, 1000)
-);
-const playerSaveTime = localStorage.getItem('videoplayer-current-time');
-// console.log(playerSaveTime);
-const playerTimeStop = JSON.parse(playerSaveTime);
-// console.log(playerTimeStop.seconds);
-player
-  .setCurrentTime(playerTimeStop.seconds)
+  import Player from '@vimeo/player';
+  import throttle from "lodash.throttle";
+  const SAVED_TIME = 'videoplayer-current-time';
+  const iframe = document.querySelector('iframe');
+  const player = new Player(iframe);
+  player.on('timeupdate', throttle(function (data) {
+      localStorage.setItem(SAVED_TIME, JSON.stringify(data))
+  }, 1000));
+  const correntTime = localStorage.getItem(SAVED_TIME);
+  const time = JSON.parse(correntTime);
+  player.setCurrentTime(time.seconds || 0)
   .then(function (seconds) {})
   .catch(function (error) {
     switch (error.name) {
@@ -24,4 +19,3 @@ player
         break;
     }
   });
-// player.setCurrentTime(playerTimeStop.seconds || 0);

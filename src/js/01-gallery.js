@@ -1,12 +1,10 @@
 // Add imports above this line
 import { galleryItems } from './gallery-items';
 // Change code below this line
-
-console.log(galleryItems);
+import SimpleLightbox from "simplelightbox";
+import 'simplelightbox/dist/simple-lightbox.min.css';
 const galleryContainer = document.querySelector('.gallery');
 console.log(galleryContainer);
-galleryContainer.addEventListener('click', handleGaleryContainerClick);
-
 function createGalleryCardsMarkup(item) {
   return item
     .map(({ preview, original, description }) => {
@@ -28,18 +26,6 @@ function createGalleryCardsMarkup(item) {
 }
 const cardsMarkup = createGalleryCardsMarkup(galleryItems);
 galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
-galleryContainer.addEventListener('click', handleGaleryContainerClick);
-function handleGaleryContainerClick(event) {
-  event.preventDefault();
-  if (event.target.nodeName !== 'IMG') {
-    return;
-  }
-  console.log(event.target);
-  let href = event.target.closest('a').getAttribute('href');
-  return href;
-}
-import SimpleLightbox from "simplelightbox";
-import 'simplelightbox/dist/simple-lightbox.min.css';
 let gallery = new SimpleLightbox('.gallery a', {
   captionSelector: 'img',
   captionsData: 'alt',
@@ -48,7 +34,4 @@ let gallery = new SimpleLightbox('.gallery a', {
   scrollZoom: false,
 });
 
-gallery.on('show.simplelightbox', function () {});
-gallery.on('error.simplelightbox', function (event) {
-  console.log(event);
-});
+
